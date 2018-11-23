@@ -3,8 +3,9 @@ import Papa from 'papaparse'
 import download from 'downloadjs'
 import { h, app } from 'hyperapp'
 import { priceIndex, priceIndexMonths } from './constants/price-index'
-import './styles/app.scss'
+import 'modern-normalize'
 import 'milligram'
+import './styles/app.scss'
 
 const formatPrice = (price) => {
   price = Math.round(price)
@@ -107,10 +108,11 @@ const view = (state, actions) => (
           href: 'https://www.scb.se/hitta-statistik/sverige-i-siffror/prisomraknaren/'
         }, 'SCB:s prisomräknare'),
         h('br', {}),
-        h('span', {}, 'Du kan kontakta mig på twitter om du har några frågor '),
+        h('span', {}, 'Du kan kontakta mig '),
         h('a', {
           href: 'https://twitter.com/marcusasplund'
         }, '@marcusasplund'),
+        h('span', {}, ' om du har några frågor '),
         h('br', {}),
         h('span', {}, 'Här finns en '),
         h('a', {
@@ -173,15 +175,6 @@ const view = (state, actions) => (
         ])
       ]),
       h('label', {}, 'Klistra in data'),
-      h('textarea', {
-        class: 'high',
-        rows: 7,
-        oninput: e => actions.parseString(e),
-        placeholder: `1979, 500
-1980, 600
-1981, 700
-1982, 800`
-      }),
       h('table', {}, [
         h('thead', {}, [
           h('tr', {}, [
@@ -199,7 +192,17 @@ const view = (state, actions) => (
             ])
           )
         ])
-      ])
+      ]),
+      h('textarea', {
+        class: 'high',
+        'aria-label': 'Manual input',
+        rows: 7,
+        oninput: e => actions.parseString(e),
+        placeholder: `1979, 500
+1980, 600
+1981, 700
+1982, 800`
+      })
     ])
   ])
 )

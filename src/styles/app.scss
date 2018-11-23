@@ -14,7 +14,6 @@ html, body {
   padding: 0;
   position: relative;
   width: 100%;
-  margin-top: 100px;
 }
 .navigation {
   display: block;
@@ -91,4 +90,7 @@ button, .file-label {
 }
 .title {
   margin-bottom: 0;
+}
+a {
+  color: #091345;
 }
