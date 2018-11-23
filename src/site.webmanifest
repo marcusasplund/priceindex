@@ -1,13 +1,13 @@
 {
   "dir": "ltr",
   "lang": "sv",
-  "name": "styleeditor",
+  "name": "prisomräknare",
   "scope": "./",
   "display": "fullscreen",
   "start_url": "./",
-  "short_name": "styleeditor",
+  "short_name": "prisomräknare",
   "theme_color": "white",
-  "description": "styleeditor",
+  "description": "prisomräknare",
   "orientation": "portrait",
   "background_color": "white",
   "icons": [
