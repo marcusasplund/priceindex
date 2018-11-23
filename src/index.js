@@ -180,7 +180,7 @@ const view = (state, actions) => (
           h('tr', {}, [
             h('th', {}, 'År'),
             h('th', {}, 'Historiskt pris'),
-            h('th', {}, `Motsvarande pris ${state.year}`)
+            h('th', {}, `Pris ${state.year}`)
           ])
         ]),
         h('tbody', {}, [
