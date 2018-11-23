@@ -26,7 +26,7 @@ const priceToday = (finalyear, year, price) => {
   return Math.round((priceIndex[finalyear] / priceIndex[year]) * price)
 }
 
-const actions = {on: e => actions.parseString(e),
+const actions = { on: e => actions.parseString(e),
   set: x => x,
 
   prepareDownLoadList: () => (state, actions) => {
@@ -69,7 +69,8 @@ const actions = {on: e => actions.parseString(e),
     })
     Papa.parse(csv.data, {
       download: csv.isFile,
-      header: false,on: e => actions.parseString(e),
+      header: false,
+      on: e => actions.parseString(e),
       step: (results) => {
         actions.addRows(results)
       },
@@ -107,7 +108,7 @@ const view = (state, actions) => (
         }, 'Prisomräknare')
       ])
     ]),
-    h('div', {on: e => actions.parseString(e),
+    h('div', { on: e => actions.parseString(e),
       class: 'content container'
     }, [
       h('p', {}, 'Här kan du konvertera längre serier med historiska priser. Antingen genom att ladda upp en .csv med tabelldata i ett format där de två första kolumnerna är [år], [pris]. Eller genom att klistra in eller skriva den i textrutan nedan. Efter konvertering kan du ladda ned en .csv med resultatet.'),
@@ -153,7 +154,7 @@ const view = (state, actions) => (
         }, [
           h('label', {
             for: 'files',
-            class: 'button file-label',
+            class: 'button file-label'
           }, 'Ladda upp .csv'),
           h('input', {
             type: 'file',
@@ -215,7 +216,7 @@ const view = (state, actions) => (
 1980, 600
 1981, 700
 1982, 800`
-}, state.initial)
+      }, state.initial)
     ])
   ])
 )
