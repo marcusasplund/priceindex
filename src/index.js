@@ -97,7 +97,13 @@ const view = (state, actions) => (
         h('span', {}, 'Du kan kontakta mig på twitter om du har några frågor '),
         h('a', {
           href: 'https://twitter.com/marcusasplund'
-        }, '@marcusasplund')
+        }, '@marcusasplund'),
+        h('br', {}),
+        h('span', {}, 'Här finns en '),
+        h('a', {
+          href: './exempel.csv'
+        }, 'exempel.csv'),
+        h('span', {}, ' som du kan ladda ned o testa med')
       ]),
       h('div', {
         class: 'row'
