@@ -14,14 +14,19 @@ const formatPrice = (price) => {
 
 const state = {
   rows: [],
-  year: 2018
+  year: 2018,
+  initial: `1914, 100
+1979, 300
+1980, 400
+1981, 450
+`
 }
 
 const priceToday = (finalyear, year, price) => {
   return Math.round((priceIndex[finalyear] / priceIndex[year]) * price)
 }
 
-const actions = {
+const actions = {on: e => actions.parseString(e),
   set: x => x,
 
   prepareDownLoadList: () => (state, actions) => {
@@ -64,7 +69,7 @@ const actions = {
     })
     Papa.parse(csv.data, {
       download: csv.isFile,
-      header: false,
+      header: false,on: e => actions.parseString(e),
       step: (results) => {
         actions.addRows(results)
       },
@@ -72,6 +77,10 @@ const actions = {
         console.log('finsihed')
       }
     })
+  },
+
+  init: () => (state, actions) => {
+    actions.parseCSV({ data: state.initial })
   },
 
   parseFile: (e) => (state, actions) => {
@@ -98,17 +107,17 @@ const view = (state, actions) => (
         }, 'Prisomräknare')
       ])
     ]),
-    h('div', {
+    h('div', {on: e => actions.parseString(e),
       class: 'content container'
     }, [
-      h('p', {}, 'Här kan du konvertera längre serier med historiska priser, du kan välja mellan att ladda upp en .csv med tabelldata i ett format där de två första kolumnerna är [år], [pris]. Eller att klistra in den i textrutan nedan. Efter konvertering kan du ladda ned en .csv med resultatet.'),
+      h('p', {}, 'Här kan du konvertera längre serier med historiska priser. Antingen genom att ladda upp en .csv med tabelldata i ett format där de två första kolumnerna är [år], [pris]. Eller genom att klistra in eller skriva den i textrutan nedan. Efter konvertering kan du ladda ned en .csv med resultatet.'),
       h('p', {}, [
         h('span', {}, 'Datan kommer från '),
         h('a', {
           href: 'https://www.scb.se/hitta-statistik/sverige-i-siffror/prisomraknaren/'
         }, 'SCB:s prisomräknare'),
         h('br', {}),
-        h('span', {}, 'Du kan kontakta mig '),
+        h('span', {}, 'Du kan kontakta mig, '),
         h('a', {
           href: 'https://twitter.com/marcusasplund'
         }, '@marcusasplund'),
@@ -144,7 +153,7 @@ const view = (state, actions) => (
         }, [
           h('label', {
             for: 'files',
-            class: 'button file-label'
+            class: 'button file-label',
           }, 'Ladda upp .csv'),
           h('input', {
             type: 'file',
@@ -206,9 +215,11 @@ const view = (state, actions) => (
 1980, 600
 1981, 700
 1982, 800`
-      })
+}, state.initial)
     ])
   ])
 )
 
-app(state, actions, view, document.body)
+const main = app(state, actions, view, document.body)
+
+main.init()
