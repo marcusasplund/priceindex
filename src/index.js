@@ -168,13 +168,13 @@ const view = (state, actions) => (
         }, [
           h('select', {
             value: state.year,
+            id: 'yearselect',
             onchange: e => actions.set({ year: e.target.value })
           }, [
             Object.keys(priceIndex).map((key, index) => h('option', {}, key))
           ])
         ])
       ]),
-      h('label', {}, 'Klistra in data'),
       h('table', {}, [
         h('thead', {}, [
           h('tr', {}, [
@@ -193,6 +193,10 @@ const view = (state, actions) => (
           )
         ])
       ]),
+      h('hr', {}),
+      h('label', {
+        for: 'yearselect'
+      }, 'Klistra in data'),
       h('textarea', {
         class: 'high',
         'aria-label': 'Manual input',
