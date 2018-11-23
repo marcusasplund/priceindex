@@ -7,6 +7,8 @@ Datan kommer från [SCB:s prisomräknare](https://www.scb.se/hitta-statistik/sve
 ## installation
 
 ````bash
+$ git clone https://github.com/marcusasplund/priceindex.git
+$ cd priceindex
 $ yarn
 $ yarn start
 
