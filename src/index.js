@@ -101,6 +101,7 @@ const view = (state, actions) => (
         h('br', {}),
         h('span', {}, 'Här finns en '),
         h('a', {
+          download: 'exempel.csv',
           href: './exempel.csv'
         }, 'exempel.csv'),
         h('span', {}, ' som du kan ladda ned o testa med')
