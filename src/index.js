@@ -23,6 +23,18 @@ const priceToday = (finalyear, year, price) => {
 const actions = {
   set: x => x,
 
+  prepareDownLoadList: () => (state, actions) => {
+    let downLoadList = []
+    state.rows.map(r => {
+      downLoadList.push({
+        year: r.year,
+        price: r.price,
+        [state.year]: priceToday(state.year, r.year, r.price)
+      })
+    })
+    return downLoadList
+  },
+
   addRows: (results) => (state, actions) => {
     let data = results.data[0]
     let year = data[0]
@@ -39,7 +51,8 @@ const actions = {
 
   downloadCSVFile: (e) => (state, actions) => {
     e.preventDefault ? e.preventDefault() : (e.returnValue = false)
-    download(Papa.unparse(state.rows, {
+    let rows = actions.prepareDownLoadList()
+    download(Papa.unparse(rows, {
       delimiter: ';'
     }), 'converted.csv', 'text/csv')
   },
