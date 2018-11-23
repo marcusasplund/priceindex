@@ -17,7 +17,7 @@ const state = {
 }
 
 const priceToday = (finalyear, year, price) => {
-  return (priceIndex[finalyear] / priceIndex[year]) * price
+  return Math.round((priceIndex[finalyear] / priceIndex[year]) * price)
 }
 
 const actions = {
