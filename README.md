@@ -4,6 +4,8 @@ Här kan du konvertera längre serier med historiska priser, du kan välja mella
 
 Datan kommer från [SCB:s prisomräknare](https://www.scb.se/hitta-statistik/sverige-i-siffror/prisomraknaren/)
 
+[prisomräknaren](https://pap.as/prisomraknaren/)
+
 ## installation
 
 ````bash
