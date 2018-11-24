@@ -7,7 +7,6 @@ html, body {
   padding: 0;
   background: hsl(218, 9%, 96%);
 }
-
 .container {
   margin: 0 auto;
   max-width: 80.0rem;
@@ -32,7 +31,6 @@ html, body {
   background: hsl(210,19,96%);
   color: hsl(24,12,30%);
 }
-
 .wrapper {
   display: block;
   overflow: hidden;
@@ -46,16 +44,9 @@ html, body {
   padding-bottom: 7.5rem;
   padding-top: 7.5rem;
 }
-
 .navigation .container {
   padding-bottom: 0;
   padding-top: 0;
-}
-
-@media(min-width:40rem) {
-    .only-mobile {
-      display: none;
-    }
 }
 .content.container {
   padding-top: 14rem;
@@ -69,13 +60,9 @@ input[type=file] {
   margin-left: -15rem;
 }
 button, .file-label {
-	text-transform: uppercase;
-	font-weight: light;
+  text-transform: uppercase;
+  font-weight: light;
 }
-.file-label {
-	font-weight: normal;
-}
-
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: rgba(0,0,0,0.2);
 }
