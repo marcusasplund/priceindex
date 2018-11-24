@@ -1,6 +1,6 @@
-[![GitHub issues](https://img.shields.io/github/issues/marcusasplund/prisomraknare.svg)](https://github.com/marcusasplund/prisomraknare/issues)
-[![Build status](https://travis-ci.org/marcusasplund/prisomraknare.svg?branch=master)](https://travis-ci.org/marcusasplund/prisomraknare)
-[![dependencies](https://david-dm.org/marcusasplund/prisomraknare.svg)](https://david-dm.org/marcusasplund/prisomraknare)
+[![GitHub issues](https://img.shields.io/github/issues/marcusasplund/priceindex.svg)](https://github.com/marcusasplund/priceindex/issues)
+[![Build status](https://travis-ci.org/marcusasplund/priceindex.svg?branch=master)](https://travis-ci.org/marcusasplund/priceindex)
+[![dependencies](https://david-dm.org/marcusasplund/priceindex.svg)](https://david-dm.org/marcusasplund/priceindex)
 
 [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
