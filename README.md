@@ -1,8 +1,9 @@
+[![Greenkeeper badge](https://badges.greenkeeper.io/marcusasplund/priceindex.svg)](https://greenkeeper.io/)
 [![GitHub issues](https://img.shields.io/github/issues/marcusasplund/priceindex.svg)](https://github.com/marcusasplund/priceindex/issues)
 [![Build status](https://travis-ci.org/marcusasplund/priceindex.svg?branch=master)](https://travis-ci.org/marcusasplund/priceindex)
 [![dependencies](https://david-dm.org/marcusasplund/priceindex.svg)](https://david-dm.org/marcusasplund/priceindex)
 
-[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard) [![Greenkeeper badge](https://badges.greenkeeper.io/marcusasplund/priceindex.svg)](https://greenkeeper.io/)
+[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard) 
 
 # prisomräknare
 
