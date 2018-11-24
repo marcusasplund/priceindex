@@ -85,10 +85,16 @@ const actions = { on: e => actions.parseString(e),
   },
 
   parseFile: (e) => (state, actions) => {
+    actions.set({
+      initial: ''
+    })
     actions.parseCSV({ data: e.target.files[0], isFile: true })
   },
 
   parseString: (e) => (state, actions) => {
+    actions.set({
+      initial: ''
+    })
     actions.parseCSV({ data: e.target.value })
   }
 }
