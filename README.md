@@ -2,7 +2,7 @@
 [![Build status](https://travis-ci.org/marcusasplund/prisomraknare.svg?branch=master)](https://travis-ci.org/marcusasplund/prisomraknare)
 [![dependencies](https://david-dm.org/marcusasplund/prisomraknare.svg)](https://david-dm.org/marcusasplund/prisomraknare)
 
-[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard) [![Greenkeeper badge](https://badges.greenkeeper.io/marcusasplund/priceindex.svg)](https://greenkeeper.io/)
 
 # prisomräknare
 
