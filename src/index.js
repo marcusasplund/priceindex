@@ -2,7 +2,7 @@
 import Papa from 'papaparse'
 import download from 'downloadjs'
 import { h, app } from 'hyperapp'
-import { priceIndex, priceIndexMonths } from './constants/price-index'
+import { priceIndex } from './constants/price-index'
 import 'modern-normalize'
 import 'milligram'
 import './styles/app.scss'
