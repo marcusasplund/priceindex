@@ -14,12 +14,7 @@ const formatPrice = (price) => {
 
 const state = {
   rows: [],
-  year: 2018,
-  initial: `1914, 100
-1979, 300
-1980, 400
-1981, 450
-`
+  year: 2018
 }
 
 const priceToday = (finalyear, year, price) => {
@@ -28,6 +23,42 @@ const priceToday = (finalyear, year, price) => {
 
 const actions = { on: e => actions.parseString(e),
   set: x => x,
+
+  updateParams: () => (state, actions) => {
+    let params = new URLSearchParams()
+    let years = []
+    let prices = []
+    if (state.rows.length > 0) {
+      state.rows.map((r, i) => {
+        years.push(r.year)
+        prices.push(r.price)
+      })
+      params.set('years', years.toString())
+      params.set('prices', prices.toString())
+      params.set('year', state.year)
+      window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
+    }
+  },
+
+  getParams: () => (state, actions) => {
+    let urlParams = new URLSearchParams(window.location.search)
+    let years = urlParams.get('years') || ''
+    let prices = urlParams.get('prices') || ''
+    let year = urlParams.get('year') || ''
+    let rows = []
+    if (years && prices && year) {
+      years.split(',').map((y, i) => {
+        rows.push({
+          year: y,
+          price: prices.split(',')[i]
+        })
+      })
+      actions.set({
+        year: year,
+        rows: rows
+      })
+    }
+  },
 
   prepareDownLoadList: () => (state, actions) => {
     let downLoadList = []
@@ -75,33 +106,25 @@ const actions = { on: e => actions.parseString(e),
         actions.addRows(results)
       },
       complete: () => {
-        console.log('finsihed')
+        console.log('finished')
       }
     })
   },
 
-  init: () => (state, actions) => {
-    actions.parseCSV({ data: state.initial })
-  },
-
   parseFile: (e) => (state, actions) => {
-    actions.set({
-      initial: ''
-    })
     actions.parseCSV({ data: e.target.files[0], isFile: true })
   },
 
   parseString: (e) => (state, actions) => {
-    actions.set({
-      initial: ''
-    })
     actions.parseCSV({ data: e.target.value })
   }
 }
 
 const view = (state, actions) => (
   h('main', {
-    class: 'wrapper'
+    class: 'wrapper',
+    oncreate: el => actions.getParams(),
+    onupdate: el => actions.updateParams()
   }, [
     h('nav', {
       class: 'navigation'
@@ -222,11 +245,9 @@ const view = (state, actions) => (
 1980, 600
 1981, 700
 1982, 800`
-      }, state.initial)
+      })
     ])
   ])
 )
 
 const main = app(state, actions, view, document.body)
-
-main.init()
