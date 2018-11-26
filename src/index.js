@@ -232,7 +232,7 @@ const view = (state, actions) => (
           h('select', {
             value: state.year,
             id: 'yearselect',
-            onchange: ({target}) => actions.setYear(target.value)
+            onchange: ({ target }) => actions.setYear(target.value)
           }, [
             Object.keys(priceIndex[state.country]).map((key, index) => {
               if (state.year === +key) {
