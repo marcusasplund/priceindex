@@ -131,6 +131,13 @@ const actions = { on: e => actions.parseString(e),
 
   parseString: (e) => (state, actions) => {
     actions.parseCSV({ data: e.target.value })
+  },
+  setCountry: (c) => (state, actions) => {
+    actions.set({
+      country: c,
+      year: 2017,
+      rows: []
+    })
   }
 }
 
@@ -224,7 +231,7 @@ const view = (state, actions) => (
           h('select', {
             value: state.country,
             id: 'countryselect',
-            onchange: e => actions.set({ country: e.target.value, rows: [], year: 2017 })
+            onchange: ({ target }) => actions.setCountry(target.value)
           }, [
             countries.map(c => h('option', {
               value: c.val
