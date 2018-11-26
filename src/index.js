@@ -24,7 +24,7 @@ if (years && prices && year) {
 }
 
 const formatPrice = (price) => {
-  price = Math.round(price)
+  price = Math.round(price).toFixed(2)
   return price.toLocaleString('sv-SE')
 }
 
