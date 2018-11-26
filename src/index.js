@@ -13,13 +13,23 @@ const formatPrice = (price) => {
   return price.toLocaleString('sv-SE')
 }
 
+const countries = [
+  {
+    name: 'United Kingdom',
+    val: 'uk'
+  }, {
+    name: 'Sverige',
+    val: 'sv'
+  }
+]
 const state = {
   rows: [],
-  year: 2018
+  year: 2017,
+  country: 'sv'
 }
 
-const priceToday = (finalyear, year, price) => {
-  return Math.round((priceIndex[finalyear] / priceIndex[year]) * price)
+const priceToday = (country, finalyear, year, price) => {
+  return Math.round((priceIndex[country][finalyear] / priceIndex[country][year]) * price)
 }
 
 const actions = { on: e => actions.parseString(e),
@@ -37,6 +47,7 @@ const actions = { on: e => actions.parseString(e),
       params.set('years', years.toString())
       params.set('prices', prices.toString())
       params.set('year', state.year)
+      params.set('country', state.country)
       window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
     }
   },
@@ -46,6 +57,7 @@ const actions = { on: e => actions.parseString(e),
     let years = urlParams.get('years') || ''
     let prices = urlParams.get('prices') || ''
     let year = urlParams.get('year') || ''
+    let country = urlParams.get('country') || ''
     let rows = []
     if (years && prices && year) {
       years.split(',').map((y, i) => {
@@ -56,6 +68,7 @@ const actions = { on: e => actions.parseString(e),
       })
       actions.set({
         year: year,
+        country: country,
         rows: rows
       })
     }
@@ -67,7 +80,7 @@ const actions = { on: e => actions.parseString(e),
       downLoadList.push({
         year: r.year,
         price: r.price,
-        [state.year]: priceToday(state.year, r.year, r.price)
+        [state.year]: priceToday(state.country, state.year, r.year, r.price)
       })
     })
     return downLoadList
@@ -147,6 +160,10 @@ const view = (state, actions) => (
         h('a', {
           href: 'https://www.scb.se/hitta-statistik/sverige-i-siffror/prisomraknaren/'
         }, 'SCB:s prisomräknare'),
+        h('span', {}, ' och '),
+        h('a', {
+          href: 'https://www.bankofengland.co.uk/monetary-policy/inflation/inflation-calculator'
+        }, 'Bank Of England'),
         h('br', {}),
         h('span', {}, 'Du kan kontakta mig, '),
         h('a', {
@@ -160,21 +177,6 @@ const view = (state, actions) => (
           href: './exempel.csv'
         }, 'exempel.csv'),
         h('span', {}, ' som du kan ladda ned o testa med')
-      ]),
-      h('div', {
-        class: 'row'
-      }, [
-        h('div', {
-          class: 'column'
-        }),
-        h('div', {
-          class: 'column'
-        }),
-        h('div', {
-          class: 'column'
-        }, [
-          h('label', {}, 'Välj slutår')
-        ])
       ]),
       h('div', {
         class: 'row'
@@ -206,12 +208,27 @@ const view = (state, actions) => (
         h('div', {
           class: 'column'
         }, [
+          h('label', {}, 'Välj slutår'),
           h('select', {
             value: state.year,
             id: 'yearselect',
             onchange: e => actions.set({ year: e.target.value })
           }, [
-            Object.keys(priceIndex).map((key, index) => h('option', {}, key))
+            Object.keys(priceIndex[state.country]).map((key, index) => h('option', {}, key))
+          ])
+        ]),
+        h('div', {
+          class: 'column'
+        }, [
+          h('label', {}, 'Välj land'),
+          h('select', {
+            value: state.country,
+            id: 'countryselect',
+            onchange: e => actions.set({ country: e.target.value, rows: [], year: 2017 })
+          }, [
+            countries.map(c => h('option', {
+              value: c.val
+            }, c.name))
           ])
         ])
       ]),
@@ -227,8 +244,8 @@ const view = (state, actions) => (
           state.rows.map(r =>
             h('tr', {}, [
               h('td', {}, r.year),
-              h('td', {}, `${formatPrice(r.price)} kr`),
-              h('td', {}, `${formatPrice(priceToday(state.year, r.year, r.price))} kr`)
+              h('td', {}, `${formatPrice(r.price)} ${state.country === 'sv' ? 'Kr' : 'GBP'}`),
+              h('td', {}, `${formatPrice(priceToday(state.country, state.year, r.year, r.price))} ${state.country === 'sv' ? 'Kr' : 'GBP'}`)
             ])
           )
         ])

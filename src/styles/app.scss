@@ -50,17 +50,33 @@ html, body {
 .content.container {
   padding-top: 14rem;
 }
+.row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+select {
+  margin-bottom: 0;
+}
 textarea.high {
   height: auto;
 }
 input[type=file] {
   visibility: hidden;
+  height: 3.8rem;
+  margin-top: -3.8rem;
   width: 15rem;
-  margin-left: -15rem;
+  margin-bottom: 0;
+  cursor: pointer;
 }
 button, .file-label {
   text-transform: uppercase;
   font-weight: light;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+button {
+  margin-top: 1rem;
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: rgba(0,0,0,0.2);
