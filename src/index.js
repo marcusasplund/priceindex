@@ -8,6 +8,21 @@ import 'modern-normalize'
 import 'milligram'
 import './styles/app.scss'
 
+let urlParams = new URLSearchParams(window.location.search)
+let years = urlParams.get('years') || ''
+let prices = urlParams.get('prices') || ''
+let year = urlParams.get('year') || ''
+let country = urlParams.get('country') || ''
+let rows = []
+if (years && prices && year) {
+  years.split(',').map((y, i) => {
+    rows.push({
+      year: y,
+      price: prices.split(',')[i]
+    })
+  })
+}
+
 const formatPrice = (price) => {
   price = Math.round(price)
   return price.toLocaleString('sv-SE')
@@ -22,10 +37,11 @@ const countries = [
     val: 'sv'
   }
 ]
+
 const state = {
-  rows: [],
-  year: 2017,
-  country: 'sv'
+  rows: rows || [],
+  year: year || 2017,
+  country: country || 'sv'
 }
 
 const priceToday = (country, finalyear, year, price) => {
@@ -51,30 +67,6 @@ const actions = {
       window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
     } else {
       window.history.replaceState({}, '', `${window.location.pathname}`)
-    }
-  },
-
-  getParams: () => (state, actions) => {
-    let urlParams = new URLSearchParams(window.location.search)
-    let years = urlParams.get('years') || ''
-    let prices = urlParams.get('prices') || ''
-    let year = urlParams.get('year') || ''
-    let country = urlParams.get('country') || ''
-    let rows = []
-    if (years && prices && year) {
-      actions.set({
-        year: year,
-        country: country
-      })
-      years.split(',').map((y, i) => {
-        rows.push({
-          year: y,
-          price: prices.split(',')[i]
-        })
-      })
-      actions.set({
-        rows: rows
-      })
     }
   },
 
@@ -161,8 +153,7 @@ const actions = {
 
 const view = (state, actions) => (
   h('main', {
-    class: 'wrapper',
-    oncreate: el => actions.getParams()
+    class: 'wrapper'
   }, [
     h('nav', {
       class: 'navigation'
