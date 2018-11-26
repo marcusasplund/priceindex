@@ -182,11 +182,14 @@ const view = (state, actions) => (
         h('span', {}, 'Datan kommer från '),
         h('a', {
           href: 'https://www.scb.se/hitta-statistik/sverige-i-siffror/prisomraknaren/'
-        }, 'SCB:s prisomräknare'),
-        h('span', {}, ' och '),
+        }, 'SCB:s prisomräknare, '),
         h('a', {
           href: 'https://www.bankofengland.co.uk/monetary-policy/inflation/inflation-calculator'
         }, 'Bank Of England'),
+        h('span', {}, ' och '),
+        h('a', {
+          href: 'https://data.bls.gov/timeseries/CUUR0000SA0'
+        }, 'Bureau of Labor Statistics'),
         h('br', {}),
         h('span', {}, 'Du kan kontakta mig, '),
         h('a', {

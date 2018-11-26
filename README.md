@@ -12,7 +12,7 @@
 Här kan du konvertera längre serier med historiska priser, både framåt till 2018 o bakåt till 1830. Du kan välja mellan att ladda upp en .csv med tabelldata i ett format där de två första kolumnerna är [år], [pris]. Även att skriva eller klistra in den i textrutan.
 När du har data kan du även byta slutår i selecten. Efter konvertering kan du ladda ned en .csv med resultatet.
 
-Datan kommer från [SCB:s prisomräknare](https://www.scb.se/hitta-statistik/sverige-i-siffror/prisomraknaren/) och [Bank of England](https://www.bankofengland.co.uk/monetary-policy/inflation/inflation-calculator)
+Datan kommer från [SCB:s prisomräknare](https://www.scb.se/hitta-statistik/sverige-i-siffror/prisomraknaren/), [Bank of England](https://www.bankofengland.co.uk/monetary-policy/inflation/inflation-calculator) och [Bureau of Labor Statistics](https://data.bls.gov/timeseries/CUUR0000SA0),
 
 ## installation
 
