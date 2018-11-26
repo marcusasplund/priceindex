@@ -24,7 +24,8 @@ if (years && prices && year) {
 }
 
 const formatPrice = (price) => {
-  price = Math.round(price).toFixed(2)
+  price = +price
+  price = price.toFixed(2)
   return price.toLocaleString('sv-SE')
 }
 
@@ -53,7 +54,7 @@ const state = {
 }
 
 const priceToday = (country, finalyear, year, price) => {
-  return Math.round((priceIndex[country][finalyear] / priceIndex[country][year]) * price)
+  return (priceIndex[country][finalyear] / priceIndex[country][year]) * price
 }
 
 const actions = {
