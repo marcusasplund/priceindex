@@ -134,9 +134,9 @@ const actions = { on: e => actions.parseString(e),
   },
   setCountry: (c) => (state, actions) => {
     actions.set({
-      country: c,
       year: 2017,
-      rows: []
+      rows: [],
+      country: c
     })
   }
 }
@@ -221,7 +221,13 @@ const view = (state, actions) => (
             id: 'yearselect',
             onchange: e => actions.set({ year: e.target.value })
           }, [
-            Object.keys(priceIndex[state.country]).map((key, index) => h('option', {}, key))
+            Object.keys(priceIndex[state.country]).map((key, index) => {
+              if (state.year === +key) {
+                return h('option', { key: key + state.country, selected: true }, key)
+              } else {
+                return h('option', { key: key + state.country }, key)
+              }
+            })
           ])
         ]),
         h('div', {
