@@ -62,6 +62,10 @@ const actions = {
     let country = urlParams.get('country') || ''
     let rows = []
     if (years && prices && year) {
+      actions.set({
+        year: year,
+        country: country
+      })
       years.split(',').map((y, i) => {
         rows.push({
           year: y,
@@ -69,8 +73,6 @@ const actions = {
         })
       })
       actions.set({
-        year: year,
-        country: country,
         rows: rows
       })
     }
