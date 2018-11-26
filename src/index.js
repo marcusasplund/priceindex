@@ -35,9 +35,17 @@ const countries = [
   }, {
     name: 'Sverige',
     val: 'sv'
+  }, {
+    name: 'USA',
+    val: 'us'
   }
 ]
 
+const currency = {
+  sv: 'Kr',
+  uk: '\u00a3',
+  us: '$'
+}
 const state = {
   rows: rows || [],
   year: year || 2017,
@@ -265,8 +273,8 @@ const view = (state, actions) => (
           state.rows.map(r =>
             h('tr', {}, [
               h('td', {}, r.year),
-              h('td', {}, `${formatPrice(r.price)} ${state.country === 'sv' ? 'Kr' : 'GBP'}`),
-              h('td', {}, `${formatPrice(priceToday(state.country, state.year, r.year, r.price))} ${state.country === 'sv' ? 'Kr' : 'GBP'}`)
+              h('td', {}, `${formatPrice(r.price)} ${currency[state.country]}`),
+              h('td', {}, `${formatPrice(priceToday(state.country, state.year, r.year, r.price))} ${currency[state.country]}`)
             ])
           )
         ])
