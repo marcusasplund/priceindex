@@ -32,7 +32,7 @@ const priceToday = (country, finalyear, year, price) => {
   return Math.round((priceIndex[country][finalyear] / priceIndex[country][year]) * price)
 }
 
-const actions = { on: e => actions.parseString(e),
+const actions = {
   set: x => x,
 
   updateParams: () => (state, actions) => {
@@ -49,6 +49,8 @@ const actions = { on: e => actions.parseString(e),
       params.set('year', state.year)
       params.set('country', state.country)
       window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
+    } else {
+      window.history.replaceState({}, '', `${window.location.pathname}`)
     }
   },
 
