@@ -112,7 +112,8 @@ const actions = { on: e => actions.parseString(e),
     actions.set({
       rows: []
     })
-    Papa.parse(csv.data, {
+    let data = csv.isFile ? csv.e.target.files[0] : csv.e.target.value
+    Papa.parse(data, {
       download: csv.isFile,
       header: false,
       on: e => actions.parseString(e),
@@ -121,31 +122,43 @@ const actions = { on: e => actions.parseString(e),
       },
       complete: () => {
         console.log('finished')
+        if (csv.isFile) {
+          csv.e.target.value = ''
+        }
+        actions.updateParams()
       }
     })
   },
 
   parseFile: (e) => (state, actions) => {
-    actions.parseCSV({ data: e.target.files[0], isFile: true })
+    actions.parseCSV({ e: e, isFile: true })
   },
 
   parseString: (e) => (state, actions) => {
-    actions.parseCSV({ data: e.target.value })
+    actions.parseCSV({ e: e })
   },
+
   setCountry: (c) => (state, actions) => {
     actions.set({
       year: 2017,
       rows: [],
       country: c
     })
+    actions.updateParams()
+  },
+
+  setYear: (y) => (state, actions) => {
+    actions.set({
+      year: y
+    })
+    actions.updateParams()
   }
 }
 
 const view = (state, actions) => (
   h('main', {
     class: 'wrapper',
-    oncreate: el => actions.getParams(),
-    onupdate: el => actions.updateParams()
+    oncreate: el => actions.getParams()
   }, [
     h('nav', {
       class: 'navigation'
@@ -219,7 +232,7 @@ const view = (state, actions) => (
           h('select', {
             value: state.year,
             id: 'yearselect',
-            onchange: e => actions.set({ year: e.target.value })
+            onchange: ({target}) => actions.setYear(target.value)
           }, [
             Object.keys(priceIndex[state.country]).map((key, index) => {
               if (state.year === +key) {
