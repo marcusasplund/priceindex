@@ -4922,13 +4922,13 @@ parcel-bundler@^1.10.3:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-parcel-plugin-sw-cache@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/parcel-plugin-sw-cache/-/parcel-plugin-sw-cache-0.2.6.tgz#a2ce44e26535f8b05e4e89187f130d173ed49868"
-  integrity sha512-vVjuA5shRQiVNeDfgb5WJL4jPVG4m5tB7bXzEoLkaTvCHYI1qL8lU/bpLbig6QCAdzdk9hSGDGpBZsAopzWBwA==
+parcel-plugin-sw-cache@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/parcel-plugin-sw-cache/-/parcel-plugin-sw-cache-0.2.7.tgz#03b9901b9e5948026914cd2fcebebbab9fb62a82"
+  integrity sha512-+xfKdWRIuBmiJMRv9DsoI6SQx+5mS+FnSrmoKmJIWjGZqkkjSnNSBK+3hXSRRL99LjquArw9u6D90q4VgxiisQ==
   dependencies:
-    replace-in-file "^3.1.0"
-    workbox-build "^3.4.1"
+    replace-in-file "^3.4.3"
+    workbox-build "^3.6.3"
 
 parse-asn1@^5.0.0:
   version "5.1.1"
@@ -5984,14 +5984,14 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-replace-in-file@^3.1.0:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/replace-in-file/-/replace-in-file-3.4.2.tgz#6d40f076ac86948e28efeb6fab73fbad5c0bfa2a"
-  integrity sha512-wb2EU5MBBqUty+b1xSIqa0IKs5M2/a+4Ldw8KM5Gpe1btv16K0eii6nMxyNhAmRZhCEPrge0ss5Ij9f7vJEYcw==
+replace-in-file@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/replace-in-file/-/replace-in-file-3.4.3.tgz#491a41c4353ca8d0342a4a0b9fb3eda3c2d0c7e3"
+  integrity sha512-m62vEDCIL1B8uzymh+YKMLb4N4LdX5A5ObxOjap4wyCHzWqblAUYO5vhjWwk7zfR8PkTRIdPZVo/u4h33clnew==
   dependencies:
     chalk "^2.4.1"
     glob "^7.1.2"
-    yargs "^12.0.1"
+    yargs "^12.0.5"
 
 request@^2.87.0, request@^2.88.0:
   version "2.88.0"
@@ -7114,7 +7114,7 @@ workbox-broadcast-cache-update@^3.6.3:
   dependencies:
     workbox-core "^3.6.3"
 
-workbox-build@^3.4.1:
+workbox-build@^3.6.3:
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/workbox-build/-/workbox-build-3.6.3.tgz#77110f9f52dc5d82fa6c1c384c6f5e2225adcbd8"
   integrity sha512-w0clZ/pVjL8VXy6GfthefxpEXs0T8uiRuopZSFVQ8ovfbH6c6kUpEh6DcYwm/Y6dyWPiCucdyAZotgjz+nRz8g==
@@ -7280,7 +7280,7 @@ yargs-parser@^5.0.0:
   dependencies:
     camelcase "^3.0.0"
 
-yargs@^12.0.1:
+yargs@^12.0.5:
   version "12.0.5"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
   integrity sha512-Lhz8TLaYnxq/2ObqHDql8dX8CJi97oHxrjUcYtzKbbykPtVW9WB+poxI+NM2UIzsMgNCZTIf0AQwsjK5yMAqZw==
