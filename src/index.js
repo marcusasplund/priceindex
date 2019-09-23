@@ -8,12 +8,13 @@ import 'modern-normalize'
 import 'milligram'
 import './styles/app.scss'
 
-let urlParams = new URLSearchParams(window.location.search)
-let years = urlParams.get('years') || ''
-let prices = urlParams.get('prices') || ''
-let year = urlParams.get('year') || ''
-let country = urlParams.get('country') || ''
-let rows = []
+const urlParams = new URLSearchParams(window.location.search)
+const years = urlParams.get('years') || ''
+const prices = urlParams.get('prices') || ''
+const year = urlParams.get('year') || ''
+const country = urlParams.get('country') || ''
+const rows = []
+
 if (years && prices && year) {
   years.split(',').map((y, i) => {
     rows.push({
@@ -47,6 +48,7 @@ const currency = {
   uk: '\u00a3',
   us: '$'
 }
+
 const state = {
   rows: rows || [],
   year: year || 2017,
@@ -61,9 +63,9 @@ const actions = {
   set: x => x,
 
   updateParams: () => (state, actions) => {
-    let params = new URLSearchParams()
-    let years = []
-    let prices = []
+    const params = new URLSearchParams()
+    const years = []
+    const prices = []
     if (state.rows.length > 0) {
       state.rows.map((r, i) => {
         years.push(r.year)
@@ -80,7 +82,7 @@ const actions = {
   },
 
   prepareDownLoadList: () => (state, actions) => {
-    let downLoadList = []
+    const downLoadList = []
     state.rows.map(r => {
       downLoadList.push({
         year: r.year,
@@ -92,9 +94,9 @@ const actions = {
   },
 
   addRows: (results) => (state, actions) => {
-    let data = results.data[0]
-    let year = data[0]
-    let price = +data[1]
+    const data = results.data
+    const year = +data[0]
+    const price = +data[1]
     if (year && price) {
       actions.set({
         rows: state.rows.concat({
@@ -107,7 +109,7 @@ const actions = {
 
   downloadCSVFile: (e) => (state, actions) => {
     e.preventDefault ? e.preventDefault() : (e.returnValue = false)
-    let rows = actions.prepareDownLoadList()
+    const rows = actions.prepareDownLoadList()
     download(Papa.unparse(rows, {
       delimiter: ';'
     }), 'converted.csv', 'text/csv')
@@ -117,11 +119,10 @@ const actions = {
     actions.set({
       rows: []
     })
-    let data = csv.isFile ? csv.e.target.files[0] : csv.e.target.value
+    const data = csv.isFile ? csv.e.target.files[0] : csv.e.target.value
     Papa.parse(data, {
       download: csv.isFile,
       header: false,
-      on: e => actions.parseString(e),
       step: (results) => {
         actions.addRows(results)
       },
@@ -154,7 +155,7 @@ const actions = {
 
   setYear: (y) => (state, actions) => {
     actions.set({
-      year: y
+      year: +y
     })
     actions.updateParams()
   }
@@ -175,7 +176,7 @@ const view = (state, actions) => (
         }, 'Prisomräknare')
       ])
     ]),
-    h('div', { on: e => actions.parseString(e),
+    h('div', {
       class: 'content container'
     }, [
       h('p', {}, 'Här kan du konvertera längre serier med historiska priser. Antingen genom att ladda upp en .csv med tabelldata i ett format där de två första kolumnerna är [år], [pris]. Eller genom att klistra in eller skriva den i textrutan nedan. Efter konvertering kan du ladda ned en .csv med resultatet.'),
@@ -278,7 +279,7 @@ const view = (state, actions) => (
             h('tr', {}, [
               h('td', {}, r.year),
               h('td', {}, `${formatPrice(r.price)} ${currency[state.country]}`),
-              h('td', {}, `${formatPrice(priceToday(state.country, state.year, r.year, r.price))} ${currency[state.country]}`)
+              h('td', {}, `${formatPrice(priceToday(state.country, state.year, +r.year, r.price))} ${currency[state.country]}`)
             ])
           )
         ])
