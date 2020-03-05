@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Papa from 'papaparse'
-import download from 'downloadjs'
+import download from 'downloadjs-next'
 import { h, app } from 'hyperapp'
 import { priceIndex } from './constants/price-index'
 import 'url-search-params-polyfill'
